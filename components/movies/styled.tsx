@@ -1,3 +1,6 @@
+import {
+    forwardRef
+} from 'react'
 
 import {
     Grid as MuiGrid,
@@ -6,6 +9,8 @@ import {
     CardMedia as MuiCardMedia,
     Typography as MuiTypography,
 } from '@material-ui/core'
+
+import Skeleton from '@material-ui/lab/Skeleton';
 
 import styled from 'styled-components'
 
@@ -18,10 +23,39 @@ export const Card = styled(MuiCard)`
     background-color: ${props => props.theme.palette.secondary.main};
 `
 
-export const CardMedia = styled(MuiCardMedia)`
+/*
+ *
+ * Add work-around to pass ref as styled-components does not handle this
+ *
+ * **/
+export const CardMediaWrapper = styled(
+    ({
+        xRef,
+        imageLoaded,
+        ...restProps
+    }) =>  {
+        return (
+            <MuiCardMedia
+                ref={xRef}
+                {...restProps}
+            />
+        );
+    }
+)`
     width: auto;
     height: 250px;
+    visibility: ${props => props.imageLoaded ? 'visible' : 'hidden'};
 `
+
+// Add forward Ref
+export const CardMedia = forwardRef((props, ref) => {
+    return (
+        <CardMediaWrapper
+            {...props}
+            xRef={ref}
+        />
+    )
+})
 
 export const Typography = styled(MuiTypography)`
     text-transform: uppercase; 

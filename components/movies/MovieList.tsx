@@ -1,10 +1,19 @@
 import {
+    useRef,
+    useEffect,
+    useState
+} from 'react'
+
+import {
     Box,
+    Fade,
     Grid,
     CardActions,
     CardContent,
     CardActionArea
 } from '@material-ui/core'
+
+import Skeleton from '@material-ui/lab/Skeleton';
 
 import Typography from '../mui/Typography'
 
@@ -61,6 +70,15 @@ const MovieList : React.FC<MovieListProps> = (
     if (!movies && !Array.isArray(movies)) return null
 
     const renderCard = (movie) => {
+        const [imageLoaded, setImageLoaded] = useState(false)
+        const imageRef = useRef()
+
+        useEffect(() => {
+            if (imageRef.current && imageRef.current.complete) {
+                setImageLoaded(true)
+            }
+        }, [imageRef.current])
+
         return (
             <Box
                 my={2}
@@ -68,10 +86,19 @@ const MovieList : React.FC<MovieListProps> = (
                 key={movie.title}>
                 <styled.Card square elevation={0}>
                     <CardActionArea>
+                        {!imageLoaded && (
+                            <Skeleton
+                                variant="rect"
+                                width={350}
+                                height={250}
+                            />
+                        )}
                         <styled.CardMedia 
+                            ref={imageRef}
                             title={movie.title}
                             image={movie.imageUrl}
-                        />
+                            component="img"
+                            imageLoaded={imageLoaded} />
                         <styled.CardContent>
                             <Box p={1}>
                                 <styled.Typography variant="h6" gutterBottom>{movie.title}</styled.Typography>
