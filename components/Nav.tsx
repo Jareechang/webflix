@@ -21,6 +21,7 @@ const StyledToolbar = styled(Toolbar)`
 
 const Title = styled(Typography)`
     text-transform: uppercase;
+    cursor: pointer;
 `
 
 const Nav : React.FC<NavProps> = (props: NavProps) => {

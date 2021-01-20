@@ -1,19 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 import Head from 'next/head'
-import { AppProps } from 'next/app';
+import { AppProps } from 'next/app'
 import { ThemeProvider as MuiThemeProvider, StylesProvider } from '@material-ui/core/styles'
-import { ThemeProvider as StyledComponentThemeProvider } from "styled-components";
+import { ThemeProvider as StyledComponentThemeProvider } from "styled-components"
 import CssBaseline from '@material-ui/core/CssBaseline'
 
-import theme from '../styles/material-ui/theme';
+import { Layout } from '../components/layout'
 
-const App = (props: AppProps) : React.FC<AppProps> => {
-    const { Component, pageProps } = props;
+import theme from '../styles/material-ui/theme'
+
+const App : React.FC<AppProps> = (props: AppProps) => {
+    const { Component, pageProps } = props
 
     useEffect(() => {
-        const jssStyles = document.querySelector('#jss-server-side');
+        const jssStyles = document.querySelector('#jss-server-side')
         if (jssStyles) {
-            document.parentElement.removeChild(jssStyles);
+            document.parentElement.removeChild(jssStyles)
         }
     }, [])
 
@@ -27,12 +29,14 @@ const App = (props: AppProps) : React.FC<AppProps> => {
                 <MuiThemeProvider theme={theme}>
                     <StyledComponentThemeProvider theme={theme}>
                         <CssBaseline />
-                        <Component {...pageProps} />
+                        <Layout>
+                            <Component {...pageProps} />
+                        </Layout>
                     </StyledComponentThemeProvider>
                 </MuiThemeProvider>
             </StylesProvider>
         </>
-    );
+    )
 }
 
-export default App;
+export default App
