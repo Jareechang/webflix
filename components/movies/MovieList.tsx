@@ -62,21 +62,24 @@ const MovieList : React.FC<MovieListProps> = (
 
     const renderCard = (movie) => {
         return (
-            <Box my={2} mr={3} key={movie.title}>
+            <Box
+                my={2}
+                mr={3}
+                key={movie.title}>
                 <styled.Card square elevation={0}>
                     <CardActionArea>
                         <styled.CardMedia 
                             title={movie.title}
                             image={movie.imageUrl}
                         />
-                        <CardContent>
+                        <styled.CardContent>
                             <Box p={1}>
                                 <styled.Typography variant="h6" gutterBottom>{movie.title}</styled.Typography>
                                 <Typography variant="body2">
                                     {utils.trimDescription(movie.description, 75)}
                                 </Typography>
                             </Box>
-                        </CardContent>
+                        </styled.CardContent>
                     </CardActionArea>
                 </styled.Card>
             </Box>
