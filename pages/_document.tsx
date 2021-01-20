@@ -1,16 +1,24 @@
 import Document from 'next/document'
-import { ServerStyleSheet } from 'styled-components'
+import { ServerStyleSheet as StyledServerStyleSheet } from 'styled-components'
+import { ServerStyleSheets as MuiServerStyleSheets } from '@material-ui/core/styles';
 
 export default class CustomDocument extends Document {
     static async getInitialProps(ctx) {
-        const sheet = new ServerStyleSheet()
+
+        const sheets = {
+            styled: new StyledServerStyleSheet(),
+            mui: new MuiServerStyleSheets()
+        }
+
         const originalRenderPage = ctx.renderPage
 
         try {
             ctx.renderPage = () => (
                 originalRenderPage({
                     enhanceApp: (App) => (props) =>
-                    sheet.collectStyles(<App {...props} />),
+                    sheets.mui.collect(
+                        sheets.styled.collectStyles(<App {...props} />)
+                    )
                 })
             )
 
@@ -21,7 +29,8 @@ export default class CustomDocument extends Document {
                 styles: (
                     <>
                         {initialProps.styles}
-                        {sheet.getStyleElement()}
+                        {sheets.styled.getStyleElement()}
+                        <style id="jss-server-side">{sheets.mui.toString()}</style>
                     </>
                 )
             }
@@ -30,7 +39,7 @@ export default class CustomDocument extends Document {
                 `_document -> Error handling SSR, ex: ${ex}`
             );
         } finally {
-            sheet.seal()
+            sheets.styled.seal()
         }
     }
 }
