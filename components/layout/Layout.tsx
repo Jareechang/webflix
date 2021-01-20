@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 
 const Container = styled.div`
-    margin: ${props => props.theme.spacing(10, 4)};
+    margin: ${props => props.theme.spacing(10, 6)};
 `
 
 export interface LayoutProps {

@@ -4,14 +4,14 @@ import { red } from '@material-ui/core/colors';
 // Create a theme instance.
 const theme = createMuiTheme({
     typography: {
-        fontFamily: 'Raleway, sans-serif',
+        fontFamily: 'Raleway, sans-serif'
     },
     palette: {
         primary: {
             main: '#fffd71',
         },
         secondary: {
-            main: '#19857b',
+            main: '#f2f2f2',
         },
         error: {
             main: red.A400,
@@ -20,17 +20,6 @@ const theme = createMuiTheme({
             default: '#fff',
         },
     },
-    typography: {
-        body1: {
-            fontFamily: `-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;`,
-            padding: '1em 0',
-            margin: 0,
-            lineHeight: 1.6,
-            fontSize: '18px'
-        }
-
-    }
 });
 
 export default theme;
