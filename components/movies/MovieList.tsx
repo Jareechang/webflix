@@ -101,7 +101,7 @@ const MovieList : React.FC<MovieListProps> = (
                 mr={3}
                 key={movie.title}>
                 <styled.Card square elevation={0}>
-                    <CardActionArea onClick={navigateToMovie(movie.id)}>
+                    <styled.CardActionArea onClick={navigateToMovie(movie.id)}>
                         {!imageLoaded && (
                             <Skeleton
                                 variant="rect"
@@ -149,7 +149,7 @@ const MovieList : React.FC<MovieListProps> = (
                                 </Box>
                             </Box>
                         </styled.CardContent>
-                    </CardActionArea>
+                    </styled.CardActionArea>
                 </styled.Card>
             </Box>
         )

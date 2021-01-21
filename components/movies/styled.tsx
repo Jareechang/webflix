@@ -6,6 +6,7 @@ import {
     Grid as MuiGrid,
     Card as MuiCard,
     CardContent as MuiCardContent,
+    CardActionArea as MuiCardArea,
     CardMedia as MuiCardMedia,
     Typography as MuiTypography,
 } from '@material-ui/core'
@@ -16,6 +17,12 @@ import styled from 'styled-components'
 
 export const CardContent = styled(MuiCardContent)`
     background-color: ${props => props.theme.palette.secondary.main};
+`
+
+export const CardActionArea = styled(MuiCardArea)`
+    && {
+        display: block;
+    }
 `
 
 export const Card = styled(MuiCard)`
@@ -42,7 +49,7 @@ export const CardMediaWrapper = styled(
         );
     }
 )`
-    width: auto;
+    width: 100%;
     height: auto;
     visibility: ${props => props.imageLoaded ? 'visible' : 'hidden'};
 `
