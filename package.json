@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest -c ./jest.config.js"
+    "test": "jest -c ./jest.config.js",
+    "test:ci": "jest -c ./jest.config.js --coverage"
   },
   "dependencies": {
     "@common-web/ts-config": "^1.0.1",
