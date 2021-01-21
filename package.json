@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest -c ./jest.config.js"
   },
   "dependencies": {
     "@common-web/ts-config": "^1.0.1",
@@ -19,6 +20,8 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "@common-web/jest": "^1.0.7",
+    "@types/jest": "^26.0.20",
     "@types/node": "^14.14.21",
     "@types/react": "^17.0.0",
     "typescript": "^4.1.3"
