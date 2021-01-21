@@ -10,7 +10,7 @@ import {
     Typography as MuiTypography,
 } from '@material-ui/core'
 
-import Skeleton from '@material-ui/lab/Skeleton';
+import { Star as MuiStarIcon } from '@material-ui/icons';
 
 import styled from 'styled-components'
 
@@ -43,7 +43,7 @@ export const CardMediaWrapper = styled(
     }
 )`
     width: auto;
-    height: 250px;
+    height: auto;
     visibility: ${props => props.imageLoaded ? 'visible' : 'hidden'};
 `
 
@@ -69,4 +69,10 @@ export const Grid = styled.div`
     &::-webkit-scrollbar {
         width: 0;
     }
+`
+
+export const StarIcon = styled(({ display, ...restProps }) =><MuiStarIcon {...restProps} />)`
+    color: #f5c518;
+    transform: translateY(25%);
+    display: ${props => props.display || 'unset'};
 `

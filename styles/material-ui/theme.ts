@@ -22,4 +22,13 @@ const theme = createMuiTheme({
     },
 });
 
+theme.overrides = {
+    MuiButton: {
+        root: {
+            padding: `${theme.spacing(2, 4)}`,
+            borderRadius: `${theme.spacing(4)}px`
+        },
+    },
+}
+
 export default theme;

@@ -1,4 +1,9 @@
+import {
+    NextPageContext
+} from 'next'
+import axios from 'axios'
 import Head from 'next/head'
+
 import {
     Box,
     Typography
@@ -40,7 +45,11 @@ const movies = [{
     }
 ]
 
-const Home = () => {
+interface HomeProps {
+    latestMovies: any;
+}
+
+const Home = (props: HomeProps) => {
     return (
         <>
             <div className="container">
@@ -51,13 +60,22 @@ const Home = () => {
                     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet" />
                 </Head>
                 <MovieList
-                    sectionTitle="Latest Movies"
-                    sectionDescription="View the latest releases"
-                    movies={movies} />
+                    sectionTitle="Latest Releases"
+                    sectionDescription=""
+                    movies={props.latestMovies} />
             </div>
         </>
 
     )
 }
+
+Home.getInitialProps = async(
+    ctx: NextPageContext
+) => {
+    const { data: { results } } = await axios.get('http://localhost:3000/api/movies')
+    return { latestMovies: results }
+}
+
+
 
 export default Home

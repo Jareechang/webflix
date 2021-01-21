@@ -16,7 +16,9 @@ const StyledAppBar = styled(AppBar)`
 `
 
 const StyledToolbar = styled(Toolbar)`
-    min-height: 55px;
+    && {
+        min-height: 50px;
+    }
 `
 
 const Title = styled(Typography)`

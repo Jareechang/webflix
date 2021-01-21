@@ -10,7 +10,7 @@ import { Layout } from '../components/layout'
 import theme from '../styles/material-ui/theme'
 
 const App : React.FC<AppProps> = (props: AppProps) => {
-    const { Component, pageProps } = props
+    const { Component, pageProps, router } = props
 
     useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side')

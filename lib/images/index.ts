@@ -1,11 +1,16 @@
-export const IMAGE_HOST : string = 'https://image.tmdb.org/t/p/w500'
+export const IMAGE_HOST : string = 'https://image.tmdb.org/t/p'
+
+export type ImageSize = 'w500' | 'original'
 
 export const getImageUrl = (
-    path: string = ''
+    path: string = '',
+    imageSize: ImageSize = 'w500'
 ): string => {
     if (!path || typeof path !== 'string') return path
 
-    if (path.startsWith('/')) return `${IMAGE_HOST}${path}`
+    const urlWithSize = `${IMAGE_HOST}/${imageSize}`
 
-    return `${IMAGE_HOST}/${path}`
+    if (path.startsWith('/')) return `${urlWithSize}${path}`
+
+    return `${urlWithSize}/${path}`
 }

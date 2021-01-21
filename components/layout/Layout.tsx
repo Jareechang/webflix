@@ -1,6 +1,16 @@
-import Nav from '../Nav'
-
+import React from 'react'
 import styled from 'styled-components'
+import {NextPageContext} from 'next'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+
+import {
+    Button,
+    Box
+} from '@material-ui/core'
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
+import { ButtonSpan } from '../movies/details/styled'
+import Nav from '../Nav'
 
 
 const Container = styled.div`
@@ -8,12 +18,16 @@ const Container = styled.div`
 `
 
 export interface LayoutProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
 }
 
 const Layout : React.FC<LayoutProps> = (
-    { children = null }: LayoutProps
+    props: LayoutProps
 ) => {
+    const {
+        children,
+    } = props
+
     return (
         <>
             <Nav />
