@@ -20,5 +20,10 @@ describe('lib/api', () => {
             expect(movie.id).toEqual(464052)
             expect(movie.title).toEqual('Wonder Woman 1984')
         })
+        it('should fetch the movie by slug name (case: The Coords A New Age)', async() => {
+            const movie = await api.getMovieBySlug('the-croods-a-new-age')
+            expect(movie.id).toEqual(529203)
+            expect(movie.title).toEqual('The Croods: A New Age')
+        })
     })
 })

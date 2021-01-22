@@ -16,8 +16,13 @@ describe('api.utils', () => {
         it('should handle cases with \' in the title', () => {
             expect(createSlug('This is movie\'s title')).toEqual('this-is-movies-title')
         })
+
         it('should handle cases with \" in the title', () => {
             expect(createSlug('This is movie\"s title')).toEqual('this-is-movies-title')
+        })
+
+        it('should handle cases with : in the title', () => {
+            expect(createSlug('Movie: This is the title')).toEqual('movie-this-is-the-title')
         })
     })
 

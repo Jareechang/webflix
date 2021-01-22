@@ -57,10 +57,10 @@ const MovieList : React.FC<MovieListProps> = (
 
     if (!movies && !Array.isArray(movies)) return null
 
-    const navigateToMovie = (movieId: string) => {
+    const navigateToMovie = (slug: string) => {
         return (e) => {
             e.preventDefault()
-            const href = `/movies/${movieId}`
+            const href = `/movies/${slug}`
             nextRouter.push(href)
         }
     }
@@ -81,7 +81,7 @@ const MovieList : React.FC<MovieListProps> = (
                 mr={3}
                 key={movie.title}>
                 <styled.Card square elevation={0}>
-                    <styled.CardActionArea onClick={navigateToMovie(movie.id)}>
+                    <styled.CardActionArea onClick={navigateToMovie(movie.slug)}>
                         {!imageLoaded && (
                             <Skeleton
                                 variant="rect"

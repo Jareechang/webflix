@@ -15,11 +15,9 @@ import Background from '../../components/movies/details/Background'
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
 import { ButtonSpan } from '../../components/movies/details/styled'
 
-
 import {
-    getMovie
+    getMovieBySlug
 } from '../../lib/api/movies'
-
 
 export interface MovieDetails {
     movie: any;
@@ -73,9 +71,9 @@ export const getServerSideProps : GetServerSideProps = async(
     ctx: NextPageContext
 ) : Promise<{props: MovieDetails}> => {
     const {
-        params: { id }
+        params: { slug }
     } = ctx;
-    const movie = await getMovie(+id)
+    const movie = await getMovieBySlug(slug)
     return {
         props: { movie }
     };

@@ -6,6 +6,7 @@ import {
 export const createSlug = (title: string) : string => {
     return title
         .toLowerCase()
+        .replace(/:/, '')
         .replace(/'/, '')
         .replace(/"/, '')
         .split(' ')

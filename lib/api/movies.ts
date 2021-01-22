@@ -22,7 +22,9 @@ export const getPopularMovies = async() : Promise<{ results: Movie[] }> => {
 
 export const getMovieBySlug = async(slug: string) : Promise<any> => {
     return new Promise((resolve, reject) => {
-        const { results } = popularMovies
+        const results = popularMovies.results.map((movie: Movie) => {
+            return addUrlSlug(movie)
+        })
         const movie = results.filter((result: Movie) => result.slug === slug)[0]
         resolve(movie)
     })
@@ -30,7 +32,9 @@ export const getMovieBySlug = async(slug: string) : Promise<any> => {
 
 export const getMovie = async(id: number) : Promise<any> => {
     return new Promise((resolve, reject) => {
-        const { results } = popularMovies
+        const results = popularMovies.results.map((movie: Movie) => {
+            return addUrlSlug(movie)
+        })
         const movie = results.filter(result => result.id === id)[0]
         resolve(movie)
     })
