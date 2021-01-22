@@ -25,7 +25,6 @@ export interface MovieDetails {
     movie: any;
 }
 
-
 const MovieDetails : React.FC<MovieDetails> = (
     props: MovieDetails
 ) => {
