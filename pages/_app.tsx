@@ -15,8 +15,8 @@ const App : React.FC<AppProps> = (props: AppProps) => {
     useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side')
         if (jssStyles) {
-            if (document.parentElement) {
-                document.parentElement.removeChild(jssStyles)
+            if (jssStyles.parentElement) {
+                jssStyles.parentElement.removeChild(jssStyles)
             }
         }
     }, [])

@@ -4,7 +4,6 @@ import { ServerStyleSheets as MuiServerStyleSheets } from '@material-ui/core/sty
 
 export default class CustomDocument extends Document {
     static async getInitialProps(ctx) {
-
         const sheets = {
             styled: new StyledServerStyleSheet(),
             mui: new MuiServerStyleSheets()
