@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Img = styled.img`
+export const Video = styled.video`
     width: 100%;
     margin: auto;
     padding: ${props => props.theme.spacing(5)}px 0;

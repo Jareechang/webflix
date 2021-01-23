@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -31,7 +33,9 @@ const Nav : React.FC<NavProps> = (props: NavProps) => {
         <StyledAppBar elevation={0}>
             <Box px={3}>
                 <StyledToolbar>
-                    <Title variant="h6">Webflix</Title>
+                    <Link href="/">
+                        <Title variant="h6">Webflix</Title>
+                    </Link>
                     <Search />
                     <Profile />
                 </StyledToolbar>

@@ -3,42 +3,65 @@ import {
     GetServerSideProps,
     NextPageContext
 } from 'next'
-import { useRouter } from 'next/router'
 
 import {
-    Button,
+    Grid,
+    Divider,
     Box
 } from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating';
 import Typography from '../../components/mui/Typography.tsx'
 import Background from '../../components/movies/details/Background'
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
-import { ButtonSpan } from '../../components/movies/details/styled'
 
 import {
-    getMovieBySlug
-} from '../../lib/api/movies'
+    getMovieBySlug,
+    searchVideo
+} from '../../lib/api'
 
 export interface MovieDetails {
     movie: any;
+    trailers: any;
 }
 
 const MovieDetails : React.FC<MovieDetails> = (
     props: MovieDetails
 ) => {
-    const { movie } = props
-    const nextRouter = useRouter()
+    const { movie, trailers } = props
 
-    const navigateHome = React.useCallback((e) => {
-        e.preventDefault()
-        nextRouter.push('/')
+    const renderTrailer = React.useCallback((trailer) => {
+        const {
+            id: {
+                videoId
+            },
+            snippet: {
+                title
+            }
+        } = trailer
+        return (
+            <Grid item md={3} xs={12} key={videoId}>
+                <iframe
+                    allowFullScreen
+                    scrolling="auto"
+                    style={{ border: 0 }}
+                    src={`http://youtube.com/embed/${videoId}`}
+                    controls
+                    width="100%"
+                    height="100%"
+                />
+                <Typography variant="body1">{title}</Typography>
+            </Grid>
+        )
     }, [])
 
     return (
         <>
             <Background
                 imagePath={movie.backdrop_path} />
-            <Box m={2}>
+
+            <Typography variant="h6">Details</Typography>
+            <Divider />
+
+            <Box my={3}>
                 <Typography variant="h4">{movie.title}</Typography>
 
                 <Box pt={2}>
@@ -51,17 +74,17 @@ const MovieDetails : React.FC<MovieDetails> = (
                 </Box>
             </Box>
 
-            <Box my={4}>
-                <Button
-                    color="primary"
-                    variant="contained"
-                    disableElevation
-                    onClick={navigateHome}>
-                    <KeyboardBackspaceIcon />
-                    <ButtonSpan>
-                        Back home
-                    </ButtonSpan>
-                </Button>
+            <Typography variant="h6">Trailers</Typography>
+            <Divider />
+
+            <Box my={3}>
+                <Grid container spacing={2}>
+                    {
+                        trailers.map(
+                            trailer => renderTrailer(trailer)
+                        )
+                    }
+                </Grid>
             </Box>
         </>
     );
@@ -74,8 +97,9 @@ export const getServerSideProps : GetServerSideProps = async(
         params: { slug }
     } = ctx;
     const movie = await getMovieBySlug(slug)
+    const trailers = (await searchVideo('some-query'))
     return {
-        props: { movie }
+        props: { movie, trailers }
     };
 }
 

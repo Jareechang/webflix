@@ -11,6 +11,8 @@ import theme from '../styles/material-ui/theme'
 
 const App : React.FC<AppProps> = (props: AppProps) => {
     const { Component, pageProps, router } = props
+    const pathname = router.pathname
+    const isHome = pathname === '/'
 
     useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side')
@@ -31,7 +33,7 @@ const App : React.FC<AppProps> = (props: AppProps) => {
                 <MuiThemeProvider theme={theme}>
                     <StyledComponentThemeProvider theme={theme}>
                         <CssBaseline />
-                        <Layout>
+                        <Layout isHome={isHome}>
                             <Component {...pageProps} />
                         </Layout>
                     </StyledComponentThemeProvider>

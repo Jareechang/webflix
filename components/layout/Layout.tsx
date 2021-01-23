@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import {NextPageContext} from 'next'
+import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+
+import HomeButton from '../HomeButton'
 
 import {
     Button,
@@ -19,12 +21,14 @@ const Container = styled.div`
 
 export interface LayoutProps {
     children?: React.ReactNode;
+    isHome: boolean;
 }
 
 const Layout : React.FC<LayoutProps> = (
     props: LayoutProps
 ) => {
     const {
+        isHome,
         children,
     } = props
 
@@ -33,6 +37,9 @@ const Layout : React.FC<LayoutProps> = (
             <Nav />
             <Container>
                 {children}
+            </Container>
+            <Container>
+                {!isHome ? <HomeButton /> : null}
             </Container>
         </>
     )

@@ -23,8 +23,8 @@ const Background : React.FC<BackgroundProps> = (
 ) => {
     const { imagePath } = props
     return (
-        <styled.Img
-            src={getImageUrl(imagePath, imageSize)} />
+        <styled.Video
+            poster={getImageUrl(imagePath, imageSize)} />
     )
 }
 
