@@ -9,9 +9,12 @@ import {
     Divider,
     Box
 } from '@material-ui/core'
-import Rating from '@material-ui/lab/Rating';
+import Rating from '@material-ui/lab/Rating'
 import Typography from '../../components/mui/Typography.tsx'
 import Background from '../../components/movies/details/Background'
+import VideoItem from '../../components/video/VideoItem'
+
+import styled from 'styled-components'
 
 import {
     getMovieBySlug,
@@ -76,6 +79,30 @@ const MovieDetails : React.FC<MovieDetails> = (
 
             <Typography variant="h6">Trailers</Typography>
             <Divider />
+            <Box my={3}>
+                <Grid container spacing={2}>
+                    <Grid item md={3}>
+                        <VideoItem
+                            height={245}
+                            thumbnail="https://i.ytimg.com/vi/sfM7_JLk-84/hqdefault.jpg" />
+                    </Grid>
+                    <Grid item md={3}>
+                        <VideoItem
+                            height={245}
+                            thumbnail="https://i.ytimg.com/vi/sfM7_JLk-84/hqdefault.jpg" />
+                    </Grid>
+                    <Grid item md={3}>
+                        <VideoItem
+                            height={245}
+                            thumbnail="https://i.ytimg.com/vi/sfM7_JLk-84/hqdefault.jpg" />
+                    </Grid>
+                    <Grid item md={3}>
+                        <VideoItem
+                            height={245}
+                            thumbnail="https://i.ytimg.com/vi/sfM7_JLk-84/hqdefault.jpg" />
+                    </Grid>
+                </Grid>
+            </Box>
 
             <Box my={3}>
                 <Grid container spacing={2}>
@@ -98,6 +125,7 @@ export const getServerSideProps : GetServerSideProps = async(
     } = ctx;
     const movie = await getMovieBySlug(slug)
     const trailers = (await searchVideo('some-query'))
+    console.log(trailers)
     return {
         props: { movie, trailers }
     };
