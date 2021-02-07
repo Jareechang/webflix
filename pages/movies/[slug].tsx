@@ -14,7 +14,7 @@ import Typography from '../../components/mui/Typography.tsx'
 import Background from '../../components/movies/details/Background'
 import VideoItem from '../../components/video/VideoItem'
 
-import styled from 'styled-components'
+import * as Styled from './styled';
 
 import {
     getMovieBySlug,
@@ -37,22 +37,17 @@ const MovieDetails : React.FC<MovieDetails> = (
                 videoId
             },
             snippet: {
-                title
+                thumbnails: {
+                    high
+                }
             }
         } = trailer
         return (
-            <Grid item md={3} xs={12} key={videoId}>
-                <iframe
-                    allowFullScreen
-                    scrolling="auto"
-                    style={{ border: 0 }}
-                    src={`http://youtube.com/embed/${videoId}`}
-                    controls
-                    width="100%"
-                    height="100%"
-                />
-                <Typography variant="body1">{title}</Typography>
-            </Grid>
+            <Styled.GridItem maxHeight={255} item md={3} key={videoId}>
+                <VideoItem
+                    height={245}
+                    thumbnail={high.url} />
+            </Styled.GridItem>
         )
     }, [])
 
@@ -79,40 +74,15 @@ const MovieDetails : React.FC<MovieDetails> = (
 
             <Typography variant="h6">Trailers</Typography>
             <Divider />
-            <Box my={3}>
-                <Grid container spacing={2}>
-                    <Grid item md={3}>
-                        <VideoItem
-                            height={245}
-                            thumbnail="https://i.ytimg.com/vi/sfM7_JLk-84/hqdefault.jpg" />
-                    </Grid>
-                    <Grid item md={3}>
-                        <VideoItem
-                            height={245}
-                            thumbnail="https://i.ytimg.com/vi/sfM7_JLk-84/hqdefault.jpg" />
-                    </Grid>
-                    <Grid item md={3}>
-                        <VideoItem
-                            height={245}
-                            thumbnail="https://i.ytimg.com/vi/sfM7_JLk-84/hqdefault.jpg" />
-                    </Grid>
-                    <Grid item md={3}>
-                        <VideoItem
-                            height={245}
-                            thumbnail="https://i.ytimg.com/vi/sfM7_JLk-84/hqdefault.jpg" />
-                    </Grid>
-                </Grid>
-            </Box>
-
-            <Box my={3}>
-                <Grid container spacing={2}>
+            <Styled.Box maxHeight={255} mt={3}>
+                <Styled.GridContainer maxHeight={255} container spacing={2}>
                     {
                         trailers.map(
                             trailer => renderTrailer(trailer)
                         )
                     }
-                </Grid>
-            </Box>
+                </Styled.GridContainer>
+            </Styled.Box>
         </>
     );
 }

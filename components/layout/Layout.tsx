@@ -16,7 +16,11 @@ import Nav from '../Nav'
 
 
 const Container = styled.div`
-    margin: ${props => props.theme.spacing(10, 6)};
+    margin: ${props => props.theme.spacing(6, 6, 0, 6)};
+`
+
+const ButtonContainer = styled.div`
+    margin: ${props => props.theme.spacing(6, 6)};
 `
 
 export interface LayoutProps {
@@ -38,9 +42,9 @@ const Layout : React.FC<LayoutProps> = (
             <Container>
                 {children}
             </Container>
-            <Container>
+            <ButtonContainer>
                 {!isHome ? <HomeButton /> : null}
-            </Container>
+            </ButtonContainer>
         </>
     )
 }
