@@ -5,21 +5,15 @@ import {
 
 import styled from 'styled-components'
 
-export const Box = styled(
-    ({ maxHeight, ...restProps  }) => <MuiBox {...restProps} />
-)`
-    max-height: ${props => props.maxHeight}px;
-`
-
-export const GridContainer = styled(
-    ({ maxHeight, ...restProps  }) => <MuiGrid {...restProps} />
-)`
-    max-height: ${props => props.maxHeight}px;
-`
-
-
 export const GridItem = styled(
     ({ maxHeight, ...restProps  }) => <MuiGrid {...restProps} />
 )`
     max-height: ${props => props.maxHeight}px;
+
+    ${props => props.theme.breakpoints.down('sm')} {
+        margin-bottom: -${props => props.theme.spacing(10)}px;
+        max-height: 100%;
+        height: auto;
+    }
+
 `

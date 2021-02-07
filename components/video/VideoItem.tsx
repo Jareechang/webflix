@@ -1,6 +1,12 @@
+import React from 'react'
 import * as Styled from './styled'
 
 export interface VideoItemProps {
+    /*
+     * The unique ID associated with the video
+     *
+     * **/
+    videoId: string;
     /*
      * thumbnail image to display
      *
@@ -22,6 +28,13 @@ export interface VideoItemProps {
 const VideoItem : React.FC<VideoItemProps> = (
     props: VideoItemProps
 ) => {
+    const {
+        videoId
+    } = props;
+
+    const handlePlayVideo = React.useCallback(() => {
+        console.log('TODO: Add action to load and play video, id: ', videoId);
+    }, [videoId])
 
     return (
         <>
@@ -29,9 +42,11 @@ const VideoItem : React.FC<VideoItemProps> = (
                 width={props.width}
                 height={props.height}
                 src={props.thumbnail} />
-            <Styled.PlayCircleFilledIcon
-                color="primary"
-            />
+            <Styled.IconButton onClick={handlePlayVideo}>
+                <Styled.PlayCircleFilledIcon
+                    color="primary"
+                />
+            </Styled.IconButton>
         </>
     )
 

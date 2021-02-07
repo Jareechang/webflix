@@ -1,19 +1,33 @@
 import MuiPlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled'
+import MuiIconButton from '@material-ui/core/IconButton'
 
 import styled from 'styled-components';
 
-export const PlayCircleFilledIcon = styled(MuiPlayCircleFilledIcon)`
+const centerPositioning = `
     position: relative;
-    top: -52.5%;
+    top: -50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 4.5em;
-    cursor: pointer;
+`
+
+export const PlayCircleFilledIcon = styled(MuiPlayCircleFilledIcon)`
+    font-size: 3em;
+`
+
+export const IconButton = styled(MuiIconButton)`
+    ${centerPositioning}
+    ${props => props.theme.breakpoints.down('sm')} {
+        top: -40%;
+    }
 `
 
 export const Thumbnail = styled.img`
     display: inline-block;
     max-width: 100%;
     width: auto;
-    height: ${props => props.height}px;
+    ${props => props.theme.breakpoints.down('sm')} {
+        width: 100%;
+        height: auto;
+    }
+
 `

@@ -1,4 +1,6 @@
-import React from 'react'
+import React,{
+    useRef
+} from 'react'
 import {
     GetServerSideProps,
     NextPageContext
@@ -42,11 +44,23 @@ const MovieDetails : React.FC<MovieDetails> = (
                 }
             }
         } = trailer
+        const ref = useRef(null);
+        if (ref && ref.current) {
+            console.log(ref.current);
+        }
         return (
-            <Styled.GridItem maxHeight={255} item md={3} key={videoId}>
+            <Styled.GridItem
+                item
+                md={3}
+                sm={12}
+                key={videoId}
+                maxHeight={255}>
                 <VideoItem
+                    ref={ref}
+                    videoId={videoId}
                     height={245}
-                    thumbnail={high.url} />
+                    thumbnail={high.url}
+                />
             </Styled.GridItem>
         )
     }, [])
@@ -74,15 +88,15 @@ const MovieDetails : React.FC<MovieDetails> = (
 
             <Typography variant="h6">Trailers</Typography>
             <Divider />
-            <Styled.Box maxHeight={255} mt={3}>
-                <Styled.GridContainer maxHeight={255} container spacing={2}>
+            <Box mt={3}>
+                <Grid container spacing={2}>
                     {
                         trailers.map(
                             trailer => renderTrailer(trailer)
                         )
                     }
-                </Styled.GridContainer>
-            </Styled.Box>
+                </Grid>
+            </Box>
         </>
     );
 }
