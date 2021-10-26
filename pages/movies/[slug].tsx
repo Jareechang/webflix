@@ -16,7 +16,7 @@ import Typography from '../../components/mui/Typography.tsx'
 import Background from '../../components/movies/details/Background'
 import VideoItem from '../../components/video/VideoItem'
 
-import * as Styled from './styled';
+import * as Styled from '../../components/movies/styled';
 
 import {
     getMovieBySlug,

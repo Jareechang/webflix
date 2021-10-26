@@ -3,6 +3,7 @@ import {
 } from 'react'
 
 import {
+    Box as MuiBox,
     Grid as MuiGrid,
     Card as MuiCard,
     CardContent as MuiCardContent,
@@ -82,4 +83,16 @@ export const StarIcon = styled(({ display, ...restProps }) =><MuiStarIcon {...re
     color: #f5c518;
     transform: translateY(25%);
     display: ${props => props.display || 'unset'};
+`
+
+export const GridItem = styled(
+    ({ maxHeight, ...restProps  }) => <MuiGrid {...restProps} />
+)`
+    max-height: ${props => props.maxHeight}px;
+
+    ${props => props.theme.breakpoints.down('sm')} {
+        margin-bottom: -${props => props.theme.spacing(10)}px;
+        max-height: 100%;
+        height: auto;
+    }
 `
