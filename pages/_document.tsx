@@ -23,13 +23,21 @@ export default class CustomDocument extends Document {
 
             const initialProps = await Document.getInitialProps(ctx);
 
+            //return {
+                //...initialProps,
+                //styles: (
+                    //<>
+                        //{initialProps.styles}
+                        //{sheets.styled.getStyleElement()}
+                        //<style id="jss-server-side">{sheets.mui.toString()}</style>
+                    //</>
+                //)
+            //}
             return {
                 ...initialProps,
                 styles: (
                     <>
                         {initialProps.styles}
-                        {sheets.styled.getStyleElement()}
-                        <style id="jss-server-side">{sheets.mui.toString()}</style>
                     </>
                 )
             }
